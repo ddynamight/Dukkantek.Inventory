@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dukkantek.Inventory.Api.Base
 {
-    [ApiController, Authorize]
+    [ApiController]
     public class BaseController : ControllerBase
     {
         protected readonly IMediator _mediator;

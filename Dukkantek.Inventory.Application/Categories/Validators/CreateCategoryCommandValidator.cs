@@ -1,9 +1,9 @@
-﻿using FluentValidation;
-using Dukkantek.Inventory.Application.Categories.Commands;
+﻿using Dukkantek.Inventory.Application.Categories.Commands;
+using FluentValidation;
 
 namespace Dukkantek.Inventory.Application.Categories.Validators
 {
-     public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
+    public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
      {
           public CreateCategoryCommandValidator()
           {

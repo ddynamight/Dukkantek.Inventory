@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Dukkantek.Inventory.Api.Base;
 using Dukkantek.Inventory.Application.Categories.Commands;
 using Dukkantek.Inventory.Application.Categories.Models.Result;
@@ -13,6 +8,9 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Dukkantek.Inventory.Api.Controllers
 {
@@ -44,7 +42,7 @@ namespace Dukkantek.Inventory.Api.Controllers
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        [HttpGet("{categoryId}", Name = "GetCategory"), ProducesResponseType(typeof(GetCategoryQueryResult), StatusCodes.Status200OK), ProducesDefaultResponseType]
+        [HttpGet("{categoryId}", Name = nameof(GetCategory)), ProducesResponseType(typeof(GetCategoryQueryResult), StatusCodes.Status200OK), ProducesDefaultResponseType]
         public async Task<IActionResult> GetCategory(Guid categoryId)
         {
             var category = await _mediator.Send(new GetCategoryQuery { Id = categoryId });
@@ -57,12 +55,11 @@ namespace Dukkantek.Inventory.Api.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPost(Name = "CreateCategory"), ProducesResponseType(typeof(GetCategoryQueryResult), StatusCodes.Status201Created), ProducesDefaultResponseType]
+        [HttpPost(Name = nameof(CreateCategory)), ProducesResponseType(typeof(GetCategoryQueryResult), StatusCodes.Status201Created), ProducesDefaultResponseType]
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand command)
         {
             var result = await _mediator.Send(command);
-            var category = _mapper.Map<GetCategoryQuery>(result);
-            return CreatedAtRoute("GetCategory", new { categoryid = result.Id }, category);
+            return CreatedAtRoute(nameof(GetCategory), new { categoryid = result.Id }, result);
         }
 
         /// <summary>
@@ -70,12 +67,11 @@ namespace Dukkantek.Inventory.Api.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpPut(Name = "UpdateCategory"), ProducesResponseType(typeof(GetCategoryQueryResult), StatusCodes.Status201Created), ProducesDefaultResponseType]
+        [HttpPut(Name = nameof(UpdateCategory)), ProducesResponseType(typeof(GetCategoryQueryResult), StatusCodes.Status201Created), ProducesDefaultResponseType]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryCommand command)
         {
             var result = await _mediator.Send(command);
-            var category = _mapper.Map<GetCategoryQuery>(result);
-            return AcceptedAtRoute("GetCategory", new { categoryid = result.Id }, category);
+            return AcceptedAtRoute(nameof(GetCategory), new { categoryid = result.Id }, result);
         }
 
         /// <summary>
@@ -83,7 +79,7 @@ namespace Dukkantek.Inventory.Api.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [HttpDelete(Name = "DeleteCategory"), ProducesResponseType(typeof(DeleteCommandResult), StatusCodes.Status201Created), ProducesResponseType(typeof(string), StatusCodes.Status404NotFound), ProducesDefaultResponseType]
+        [HttpDelete(Name = nameof(DeleteCategory)), ProducesResponseType(typeof(DeleteCommandResult), StatusCodes.Status201Created), ProducesResponseType(typeof(string), StatusCodes.Status404NotFound), ProducesDefaultResponseType]
         public async Task<IActionResult> DeleteCategory([FromBody] DeleteCategoryCommand command)
         {
             var result = await _mediator.Send(command);
