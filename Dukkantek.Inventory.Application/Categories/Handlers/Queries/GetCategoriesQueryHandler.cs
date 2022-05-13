@@ -26,7 +26,7 @@ namespace Dukkantek.Inventory.Application.Categories.Handlers.Queries
 
         public async Task<IEnumerable<GetCategoryQueryResult>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var categories = await _context.Categories.ToListAsync(cancellationToken);
+            var categories = await _context.Categories.Include(e => e.Products).ToListAsync(cancellationToken);
             await _mediator.Publish(new AllCategoriesViewedEvent(categories), cancellationToken);
             return _mapper.Map<IEnumerable<GetCategoryQueryResult>>(categories);
         }

@@ -5,7 +5,7 @@ namespace Dukkantek.Inventory.Common.Enums
     public enum ProductStatusEnum
     {
         [Description("InStock")]
-        Project = 1,
+        InStock = 1,
         [Description("Sold")]
         Sold = 2,
         [Description("Damaged")]

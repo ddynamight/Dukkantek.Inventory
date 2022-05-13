@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Dukkantek.Inventory.Api.Controllers
 {
     /// <summary>
-    /// 
+    /// this is the categories endpoints
     /// </summary>
     [Route("[controller]")]
     public class CategoriesController : BaseController

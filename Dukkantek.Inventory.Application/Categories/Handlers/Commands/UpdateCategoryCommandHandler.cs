@@ -22,6 +22,7 @@ namespace Dukkantek.Inventory.Application.Categories.Handlers.Commands
             _mapper = mapper;
             _mediator = mediator;
         }
+
         public async Task<GetCategoryQueryResult> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
             var categoryFromDb = await _context.Categories.SingleAsync(e => e.Id.Equals(request.Id), cancellationToken);

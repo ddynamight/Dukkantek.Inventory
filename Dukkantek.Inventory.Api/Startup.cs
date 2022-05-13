@@ -17,6 +17,7 @@ using Dukkantek.Inventory.Application.Behaviors.Loggings;
 using Dukkantek.Inventory.Application.Behaviors.Validations;
 using Dukkantek.Inventory.Application.Categories.Commands;
 using Dukkantek.Inventory.Application.Categories.Validators;
+using Dukkantek.Inventory.Application.Extensions;
 using Dukkantek.Inventory.Infrastructure.Extensions;
 using Dukkantek.Inventory.Persistence.Extensions;
 using FluentValidation.AspNetCore;
@@ -107,8 +108,7 @@ namespace Dukkantek.Inventory.Api
                 logging.AddDebug();
             });
 
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            services.AddMediatRBehaviors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
