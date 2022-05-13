@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Dukkantek.Inventory.Common.Extensions
 {
-    public static class CinnsolExtensions
+    public static class DukkantekExtensions
     {
         public static string Slugify(this string str)
         {
