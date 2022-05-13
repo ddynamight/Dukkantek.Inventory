@@ -15,6 +15,14 @@ namespace Dukkantek.Inventory.Persistence.Categories.Configurations
 
             builder.Property(p => p.RowVersion)
                 .IsRowVersion();
+
+
+            // One to Many Relationships Configurations
+
+            builder.HasMany(c => c.Products)
+                .WithOne(c => c.Category)
+                .HasForeignKey(c => c.CategoryId);
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Dukkantek.Inventory.Application.Categories.Command;
+using Dukkantek.Inventory.Application.Categories.Commands;
 
-namespace Dukkantek.Inventory.Application.Categories.Validator
+namespace Dukkantek.Inventory.Application.Categories.Validators
 {
      public class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
      {
